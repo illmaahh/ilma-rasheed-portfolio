@@ -32,7 +32,7 @@ async function buildCosmicScene() {
   renderer.toneMappingExposure = 1.12;
 
   scene.add(new THREE.HemisphereLight(0xffe1e0, 0x54223f, 2.2));
-  const keyLight = new THREE.DirectionalLight(0xffe6c5, 3.2);
+  const keyLight = new THREE.DirectionalLight(0xffd6e8, 3.2);
   keyLight.position.set(-3, 5, 6);
   scene.add(keyLight);
   const pinkRim = new THREE.PointLight(0xd65e92, 30, 16);
@@ -62,12 +62,12 @@ async function buildCosmicScene() {
   scene.add(sun);
   const sunCore = new THREE.Mesh(
     new THREE.SphereGeometry(0.55, 28, 20),
-    new THREE.MeshStandardMaterial({color: 0xf1c76d, emissive: 0xf6a94b, emissiveIntensity: 1.4, roughness: 0.36, metalness: 0.05})
+    new THREE.MeshStandardMaterial({color: 0xee9ec7, emissive: 0xeb78ae, emissiveIntensity: 1.4, roughness: 0.36, metalness: 0.05})
   );
   sun.add(sunCore);
   const sunRing = new THREE.Mesh(
     new THREE.TorusGeometry(0.78, 0.013, 6, 76),
-    new THREE.MeshBasicMaterial({color: 0xffdca1, transparent: true, opacity: 0.75})
+    new THREE.MeshBasicMaterial({color: 0xffcae3, transparent: true, opacity: 0.75})
   );
   sunRing.rotation.x = 0.95;
   sun.add(sunRing);
@@ -75,7 +75,7 @@ async function buildCosmicScene() {
   glowCanvas.width = glowCanvas.height = 128;
   const ctx = glowCanvas.getContext('2d');
   const glow = ctx.createRadialGradient(64, 64, 4, 64, 64, 64);
-  glow.addColorStop(0, 'rgba(255,216,144,.66)');
+  glow.addColorStop(0, 'rgba(255,181,220,.66)');
   glow.addColorStop(.25, 'rgba(245,150,163,.26)');
   glow.addColorStop(1, 'rgba(245,150,163,0)');
   ctx.fillStyle = glow;
@@ -102,7 +102,7 @@ async function buildCosmicScene() {
   planet.add(planetBand);
   const smallMoon = new THREE.Mesh(
     new THREE.SphereGeometry(0.105, 16, 12),
-    new THREE.MeshStandardMaterial({color: 0xf3d593, roughness: 0.48})
+    new THREE.MeshStandardMaterial({color: 0xf2b5d2, roughness: 0.48})
   );
   orbit.add(smallMoon);
 
