@@ -331,3 +331,20 @@ const revealObserver = new IntersectionObserver(entries => entries.forEach(entry
   if (entry.isIntersecting) { entry.target.classList.add('in-view'); revealObserver.unobserve(entry.target); }
 }), {threshold: 0.09});
 document.querySelectorAll('.reveal').forEach(element => revealObserver.observe(element));
+
+// Gentle 3D tilt gives each project tile a little depth on pointer devices.
+if (!reducedMotion && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('pointermove', event => {
+      const rect = card.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      card.style.setProperty('--tilt-x', `${(x * 2.6).toFixed(2)}deg`);
+      card.style.setProperty('--tilt-y', `${(-y * 2.2).toFixed(2)}deg`);
+    });
+    card.addEventListener('pointerleave', () => {
+      card.style.setProperty('--tilt-x', '0deg');
+      card.style.setProperty('--tilt-y', '0deg');
+    });
+  });
+}
